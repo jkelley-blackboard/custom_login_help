@@ -55,7 +55,7 @@ See this sharecast recording: https://www.screencast.com/t/B1DjvJ43rF
 
 ------ html added just above <div id="login-form"
 
-<!-- START Custom HTML buttons for SAML redirect and toggle login form -->
+<!-- START Custom HTML buttons for SAML redirect and toggle login form
   <div id="samlLogin">
       <p id="samlButton"><a id="mySaml" class="button expand inverse outline" href="">Click here for SAML Login</a></p>
    </div>
@@ -63,4 +63,4 @@ See this sharecast recording: https://www.screencast.com/t/B1DjvJ43rF
 <div id="toggle_login_form">
       <input type="button" name="button1" id="nextbt" class="button expand inverse outline" rel="loginFormFields" value="Click for Direct Login" onclick="buttonToggle(this,' Click to Hide Direct Login ',' Click for Direct Login ')"> 
    </div>
-<!-- END custom HTML --> 
+ END custom HTML --!> 
