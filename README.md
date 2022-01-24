@@ -32,7 +32,7 @@ See this sharecast recording: https://www.screencast.com/t/B1DjvJ43rF
 	}
 
 	</style>
-  
+----  
 ----  javaScript to get the 3rd party link
 
 <script type="text/javascript">
@@ -41,7 +41,7 @@ See this sharecast recording: https://www.screencast.com/t/B1DjvJ43rF
   var rlinks = document.querySelectorAll("a[href*='/auth-saml/saml/login?apId']");
   document.getElementById("mySaml").href = rlinks[0]
 </script>
-
+----
 ----  javaScript to toggle the local login form fields
 
 <script type='text/javascript'>
@@ -52,10 +52,10 @@ See this sharecast recording: https://www.screencast.com/t/B1DjvJ43rF
     table.style.display = (table.style.display == 'block') ? 'none' : 'block';
   }
 </script>
-
+-------
 ------ html added just above <div id="login-form"
-
-<!-- START Custom HTML buttons for SAML redirect and toggle login form
+```html
+<!-- START Custom HTML buttons for SAML redirect and toggle login form -->
   <div id="samlLogin">
       <p id="samlButton"><a id="mySaml" class="button expand inverse outline" href="">Click here for SAML Login</a></p>
    </div>
@@ -63,4 +63,5 @@ See this sharecast recording: https://www.screencast.com/t/B1DjvJ43rF
 <div id="toggle_login_form">
       <input type="button" name="button1" id="nextbt" class="button expand inverse outline" rel="loginFormFields" value="Click for Direct Login" onclick="buttonToggle(this,' Click to Hide Direct Login ',' Click for Direct Login ')"> 
    </div>
- END custom HTML --!> 
+ <!-- END custom HTML --> 
+```
