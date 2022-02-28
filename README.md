@@ -6,7 +6,7 @@ These are relatively simple HTML, CSS, and Javascript snippets you can add to yo
 2. Toggle (show/hide) the direct login form fields
 
 
-See this screencast recording: https://www.screencast.com/t/R1URYcxcIz
+See this collaborate recording: https://us.bbcollab.com/recording/de225e5bb3af44f3a5258708606b24a6
 
 ---- add style block above <<bbNG:jsBlock>
 
