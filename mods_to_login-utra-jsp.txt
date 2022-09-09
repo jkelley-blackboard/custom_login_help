@@ -39,6 +39,7 @@
 		      newElement.innerText = providerList[p].firstElementChild.innerText;
 		      destContainer.appendChild(newElement);
 		  }
+	}
     </script>
 -----------------------------------------------------
 ----JavaScript to toggle the local login form fields
