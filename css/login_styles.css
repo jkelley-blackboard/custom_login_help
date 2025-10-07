@@ -1,0 +1,30 @@
+/* Container for toggle switch */
+.login-toggle-container {
+    margin-bottom: 1em;
+}
+
+/* Label for toggle */
+.login-toggle-label {
+    margin-right: 0.5em;
+    font-weight: bold;
+}
+
+/* Checkbox styling (optional) */
+.login-toggle-checkbox {
+    transform: scale(1.2);
+    cursor: pointer;
+}
+
+/* Third-party login button styles */
+.third-party-login-button {
+    background-color: #c56fd5; /* Anthology purple */
+    color: #fff;
+    border-radius: 6px;
+    padding: 10px 16px;
+    margin: 4px;
+    display: inline-block;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
