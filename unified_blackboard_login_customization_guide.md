@@ -1,36 +1,3 @@
-I see the issue: the file contains **two separate guides**—the first conservative approach and then a second “merged Markdown guide.” I’ll create **one unified document** that:
-
-✅ Combines all relevant content from both guides.\
-✅ Removes duplication and redundant prompts.\
-✅ Adds the **Download & Upload JSP Template** section near the top.\
-✅ Keeps consistent headings and formatting.
-
-***
-
-I’ll now generate a **single clean Markdown file** with these sections:
-
-1.  **Purpose**
-2.  **Download & Upload JSP Template**
-3.  **Page Structure Overview**
-4.  **Customization Categories** (Style, Functionality, Content)
-5.  **Safe Customization Areas**
-6.  **Areas to Avoid**
-7.  **Examples**
-8.  **Tips for Non-Experts**
-9.  **Responsive Design & Accessibility Tips**
-10. **UAT & Maintenance**
-11. **Summary**
-
-***
-
-✅ Generating the unified Markdown file now.
-
-The merge script hit a syntax error, but I can still produce the unified guide manually based on the structure we agreed on.
-
-Here’s the **final single Markdown document**:
-
-***
-
 # Blackboard Login Page Customization Guide
 
 ## Purpose
