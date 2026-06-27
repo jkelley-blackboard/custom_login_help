@@ -36,14 +36,58 @@ Blackboard SaaS allows administrators to customize the login page by editing a J
 
 ## Page Structure Overview
 
-The login page includes:
+The diagram below shows the visual layout of the login page with all repository snippets applied. Elements marked `[P]` are rendered by Blackboard and should not be modified. Elements marked `[C]` are injected by snippets in this repository.
 
-*   **Language Selector**: Allows users to switch interface language.
-*   **Login Form**: Username and password fields.
-*   **Multi-Factor Authentication (MFA)**: Optional 2FA setup.
-*   **Third-Party Login**: Links to SAML or other federated login providers.
-*   **System Announcements**: Informational messages.
-*   **Footer**: Legal and branding information.
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                                          🌐 Language Selector   │
+│                                          #loginLang         [P] │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                  │
+│  ╔═══════════════════════════════════════════════════════════╗   │
+│  ║  ⚠  Maintenance Banner            .maintenance-banner    ║   │
+│  ║     (only shown between START_DATE and END_DATE)     [C] ║   │
+│  ╚═══════════════════════════════════════════════════════════╝   │
+│                                                                  │
+│                   ┌───────────────────┐                         │
+│                   │   Institution     │                         │
+│                   │      Logo         │  .login-logo       [P]  │
+│                   └───────────────────┘                         │
+│                                                                  │
+│  ┌───────────────────────────────────────────────────────────┐   │
+│  │  [ SSO / SAML Button ]   [ SSO / SAML Button ]  ...      │   │
+│  │                                   #3rdPartyLinks     [C] │   │
+│  └───────────────────────────────────────────────────────────┘   │
+│                                                                  │
+│  ☐  Show third-party login options        login_toggle.js   [C] │
+│                                                                  │
+│  ┌───────────────────────────────────────────────────────────┐   │
+│  │  [ Sign In with Username and Password ]                   │   │
+│  │                              login_form_toggle.js    [C]  │   │
+│  │·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  ·  │   │
+│  │  Username  [_________________________________________]    │   │
+│  │  Password  [_____________________________________] 👁 [C] │   │
+│  │            [                Sign In              ]       │   │
+│  │                                   #loginFormFields   [P] │   │
+│  └───────────────────────────────────────────────────────────┘   │
+│                                                                  │
+│  ░░░ ▼ Sign in with third-party account ░░░░░░░░░░░░░░░░░░░░░   │
+│  ░░░   #loginRedirectProviders  (hidden via CSS)          [P]░   │
+│                                                                  │
+├─────────────────────────────────────────────────────────────────┤
+│  System Announcements                                            │
+│  .login-page-announcements                                  [P] │
+├─────────────────────────────────────────────────────────────────┤
+│  [Catalog Link]  © Copyright  [Help]  [Privacy]  [Accessibility]│
+│                           #copyright  /  #loginOptions      [P] │
+└─────────────────────────────────────────────────────────────────┘
+
+[P]  Platform element — rendered by Blackboard. Do not modify.
+[C]  Custom element — added by snippets in this repository.
+👁   password_toggle.html snippet.
+░░░  Hidden — element exists in the DOM but is not visible.
+╔╗   Conditional — only renders when configured / within date range.
+```
 
 ***
 

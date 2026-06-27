@@ -2,6 +2,8 @@
 
 CSS and JavaScript snippets for Blackboard Learn (SaaS) administrators who want to enhance the login page with better branding, improved usability, and accessible features — without touching authentication logic.
 
+![Login page element map](docs/login_page_map.svg)
+
 ## What's included
 
 | Snippet | File | What it does |

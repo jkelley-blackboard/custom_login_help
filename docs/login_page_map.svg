@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 668" width="540" height="668" font-family="'Segoe UI', Arial, sans-serif">
+
+  <!-- Background -->
+  <rect width="540" height="668" fill="#f8fafc"/>
+
+  <!-- Page frame -->
+  <rect x="12" y="8" width="516" height="568" rx="6" fill="white" stroke="#cbd5e1" stroke-width="1.5"/>
+
+  <!-- Page title bar -->
+  <rect x="12" y="8" width="516" height="22" rx="6" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1.5"/>
+  <rect x="12" y="22" width="516" height="8" fill="#f1f5f9"/>
+  <circle cx="28" cy="19" r="4" fill="#f87171"/>
+  <circle cx="42" cy="19" r="4" fill="#fbbf24"/>
+  <circle cx="56" cy="19" r="4" fill="#34d399"/>
+  <text x="270" y="23" text-anchor="middle" font-size="9" fill="#94a3b8">your-institution.blackboard.com/webapps/login/</text>
+
+  <!-- ── Language Picker ───────────────────────────── PLATFORM -->
+  <rect x="368" y="36" width="148" height="28" rx="3" fill="#dbeafe" stroke="#3b82f6" stroke-width="1"/>
+  <text x="442" y="48" text-anchor="middle" font-size="9" font-weight="bold" fill="#1e40af">🌐 Language Selector</text>
+  <text x="442" y="59" text-anchor="middle" font-size="8" fill="#3b82f6">#loginLang</text>
+
+  <!-- ── Maintenance Banner ──────────────────── CUSTOM / CONDITIONAL -->
+  <rect x="24" y="72" width="492" height="36" rx="3" fill="#fef9c3" stroke="#ca8a04" stroke-width="1" stroke-dasharray="5,3"/>
+  <text x="270" y="86" text-anchor="middle" font-size="9" font-weight="bold" fill="#713f12">⚠  Maintenance Banner</text>
+  <text x="270" y="99" text-anchor="middle" font-size="8" fill="#92400e">.maintenance-banner  ·  conditional: only displays between START_DATE and END_DATE</text>
+
+  <!-- ── Logo ─────────────────────────────────────── PLATFORM -->
+  <rect x="170" y="118" width="200" height="44" rx="3" fill="#dbeafe" stroke="#3b82f6" stroke-width="1"/>
+  <text x="270" y="137" text-anchor="middle" font-size="10" font-weight="bold" fill="#1e40af">Institution Logo</text>
+  <text x="270" y="152" text-anchor="middle" font-size="8" fill="#3b82f6">.login-logo</text>
+
+  <!-- ── #3rdPartyLinks ────────────────────────────── CUSTOM -->
+  <rect x="24" y="172" width="492" height="40" rx="3" fill="#f3e8ff" stroke="#9333ea" stroke-width="1"/>
+  <text x="270" y="187" text-anchor="middle" font-size="9" font-weight="bold" fill="#6b21a8">[ SSO / SAML Button ]     [ SSO / SAML Button ]</text>
+  <text x="270" y="203" text-anchor="middle" font-size="8" fill="#9333ea">#3rdPartyLinks  ·  custom_login_buttons.js</text>
+
+  <!-- ── Third-party toggle checkbox ──────────────── CUSTOM -->
+  <rect x="24" y="222" width="492" height="26" rx="3" fill="#f3e8ff" stroke="#9333ea" stroke-width="1"/>
+  <text x="270" y="238" text-anchor="middle" font-size="9" fill="#6b21a8">☐  Show third-party login options  ·  login_toggle.js</text>
+
+  <!-- ── Login Form Toggle Button ─────────────────── CUSTOM -->
+  <rect x="24" y="258" width="492" height="30" rx="3" fill="#f3e8ff" stroke="#9333ea" stroke-width="1"/>
+  <text x="270" y="272" text-anchor="middle" font-size="9" font-weight="bold" fill="#6b21a8">[ Sign In with Username and Password ]</text>
+  <text x="270" y="283" text-anchor="middle" font-size="8" fill="#9333ea">login_form_toggle.js</text>
+
+  <!-- ── Login Form Fields ─────────────────────────── PLATFORM -->
+  <rect x="24" y="298" width="492" height="122" rx="3" fill="#dbeafe" stroke="#3b82f6" stroke-width="1"/>
+  <text x="270" y="311" text-anchor="middle" font-size="8" fill="#3b82f6">#loginFormFields</text>
+  <!-- Username row -->
+  <rect x="38" y="316" width="464" height="26" rx="2" fill="white" stroke="#93c5fd" stroke-width="1"/>
+  <text x="110" y="333" text-anchor="middle" font-size="9" fill="#374151">Username</text>
+  <rect x="162" y="320" width="326" height="18" rx="2" fill="#f0f9ff" stroke="#bfdbfe" stroke-width="1"/>
+  <!-- Password row -->
+  <rect x="38" y="350" width="464" height="26" rx="2" fill="white" stroke="#93c5fd" stroke-width="1"/>
+  <text x="110" y="367" text-anchor="middle" font-size="9" fill="#374151">Password</text>
+  <rect x="162" y="354" width="296" height="18" rx="2" fill="#f0f9ff" stroke="#bfdbfe" stroke-width="1"/>
+  <!-- Eye button (custom) -->
+  <rect x="464" y="354" width="32" height="18" rx="2" fill="#f3e8ff" stroke="#9333ea" stroke-width="1"/>
+  <text x="480" y="367" text-anchor="middle" font-size="9" fill="#9333ea">👁</text>
+  <text x="480" y="378" text-anchor="middle" font-size="7" fill="#9333ea">pw_toggle</text>
+  <!-- Sign in button -->
+  <rect x="38" y="384" width="464" height="28" rx="3" fill="#1e40af"/>
+  <text x="270" y="402" text-anchor="middle" font-size="9" font-weight="bold" fill="white">Sign In</text>
+
+  <!-- ── Platform Provider Dropdown (hidden) ──────── PLATFORM / HIDDEN -->
+  <rect x="24" y="430" width="492" height="26" rx="3" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1" stroke-dasharray="5,3"/>
+  <text x="270" y="447" text-anchor="middle" font-size="8.5" fill="#9ca3af">▼  Sign in with third-party account  ·  #loginRedirectProviders  ·  hidden via CSS</text>
+
+  <!-- Section divider -->
+  <line x1="12" y1="468" x2="528" y2="468" stroke="#e2e8f0" stroke-width="2"/>
+
+  <!-- ── System Announcements ──────────────────────── PLATFORM -->
+  <rect x="24" y="476" width="492" height="46" rx="3" fill="#dbeafe" stroke="#3b82f6" stroke-width="1"/>
+  <text x="270" y="496" text-anchor="middle" font-size="9" font-weight="bold" fill="#1e40af">System Announcements</text>
+  <text x="270" y="511" text-anchor="middle" font-size="8" fill="#3b82f6">.login-page-announcements</text>
+
+  <!-- Section divider -->
+  <line x1="12" y1="532" x2="528" y2="532" stroke="#e2e8f0" stroke-width="2"/>
+
+  <!-- ── Footer ────────────────────────────────────── PLATFORM -->
+  <rect x="24" y="540" width="492" height="30" rx="3" fill="#dbeafe" stroke="#3b82f6" stroke-width="1"/>
+  <text x="270" y="554" text-anchor="middle" font-size="9" fill="#1e40af">© Copyright   [Help]   [Privacy]   [Accessibility]</text>
+  <text x="270" y="565" text-anchor="middle" font-size="8" fill="#3b82f6">#copyright  /  #loginOptions</text>
+
+  <!-- ── Legend ──────────────────────────────────────────────── -->
+  <rect x="12" y="584" width="516" height="76" rx="4" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="270" y="598" text-anchor="middle" font-size="9" font-weight="bold" fill="#64748b">Legend</text>
+
+  <!-- Row 1 -->
+  <rect x="28" y="606" width="14" height="10" rx="2" fill="#dbeafe" stroke="#3b82f6" stroke-width="1"/>
+  <text x="48" y="615" font-size="8.5" fill="#374151">Platform — rendered by Blackboard, do not modify</text>
+
+  <rect x="290" y="606" width="14" height="10" rx="2" fill="#f3e8ff" stroke="#9333ea" stroke-width="1"/>
+  <text x="310" y="615" font-size="8.5" fill="#374151">Custom — added by snippets in this repository</text>
+
+  <!-- Row 2 -->
+  <rect x="28" y="624" width="14" height="10" rx="2" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1" stroke-dasharray="3,2"/>
+  <text x="48" y="633" font-size="8.5" fill="#374151">Hidden — in DOM but not visible</text>
+
+  <rect x="290" y="624" width="14" height="10" rx="2" fill="#fef9c3" stroke="#ca8a04" stroke-width="1" stroke-dasharray="3,2"/>
+  <text x="310" y="633" font-size="8.5" fill="#374151">Conditional — only shown when configured</text>
+
+  <!-- Row 3 note -->
+  <text x="270" y="652" text-anchor="middle" font-size="8" fill="#94a3b8">Elements shown in the order they appear on the page · #loginFormFields hidden by default when using SSO-first layout</text>
+
+</svg>
