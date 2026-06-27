@@ -130,7 +130,7 @@ The login page includes:
 | Element                                    | Why to Avoid                            |
 | ------------------------------------------ | --------------------------------------- |
 | `<form>` structure                         | Tied to Blackboard authentication logic |
-| `id="username"` / `id="password"`          | Used by scripts and backend validation  |
+| `id="user_id"` / `id="password"`           | Used by scripts and backend validation  |
 | MFA placeholders (`${mfaSecretKey}`)       | Dynamically populated by server         |
 | JSP includes (`<%@ include file="..." %>`) | Inject shared functionality             |
 | JavaScript functions like `loadLocale()`   | Required for language switching         |
