@@ -18,7 +18,7 @@ Blackboard SaaS allows administrators to customize the login page by editing a J
 
 1.  **Download the Current Template**
     *   Navigate to **System Admin > "The Ultra experience is here!" module > Branding > Customize Login Page**.
-    *   Click **Download Template** to get the `login.jsp` file.
+    *   Click **Download Template** to get the `login_ultra.jsp` file.
 
 2.  **Edit the Template**
     *   Open `login.jsp` in a text editor (e.g., VS Code).
@@ -27,7 +27,7 @@ Blackboard SaaS allows administrators to customize the login page by editing a J
 
 3.  **Upload the Modified Template**
     *   Return to **System Admin > "The Ultra experience is here!" module > Branding > Customize Login Page**.
-    *   Click **Upload Template** and select your edited `login.jsp`.
+    *   Click **Upload Template** and select your edited `login_ultra.jsp`.
     *   Save and preview changes in a staging environment before going live.
 
 📌 **Reference**: [Blackboard Help – Customize the Login Page](https://help.blackboard.com/Learn/Administrator/SaaS/Institution_Branding/Customize_the_Login_Page)
