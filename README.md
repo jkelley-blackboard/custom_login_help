@@ -12,11 +12,13 @@ This repository provides simple HTML, CSS, and JavaScript snippets that can be a
 
 | Path | Description |
 |------|-------------|
-| `js/custom_login_buttons.js` | Clones third-party login provider links into a styled button container (`#3rdPartyLinks`). Load this **before** `login_toggle.js`. |
-| `js/login_toggle.js` | Adds a checkbox toggle to show/hide the third-party login buttons. Depends on `custom_login_buttons.js` having already populated `#3rdPartyLinks`. |
-| `css/login_styles.css` | Styles for the toggle control and third-party login buttons. |
-| `templates/` | Annotated copies of Blackboard's default JSP templates for reference. |
-| `examples/` | Standalone code snippets (e.g., password visibility toggle, legacy button injection). |
+| `js/custom_login_buttons.js` | Clones third-party login provider links into a styled button container (`#3rdPartyLinks`). **Load first** — `login_toggle.js` depends on it. |
+| `js/login_toggle.js` | Adds a checkbox to show/hide the `#3rdPartyLinks` button container. Load after `custom_login_buttons.js`. |
+| `js/login_form_toggle.js` | Adds a button to show/hide the username/password fields (`#loginFormFields`). Standalone — useful when SSO is the primary login method. |
+| `js/maintenance_banner.js` | Date-bounded, dismissible maintenance/status banner. Edit `START_DATE`, `END_DATE`, and `BANNER_MESSAGE` at the top of the file. Standalone. |
+| `css/login_styles.css` | Styles for all snippets. Set `--bb-brand-color` in `:root` to match your institution's brand color. |
+| `templates/` | Versioned copies of Blackboard's default JSP templates; see `templates/README.md`. |
+| `examples/` | Standalone snippets: `password_toggle.html` (eye icon on password field), `mods_to_login-utra-jsp.txt` (legacy reference). |
 | `unified_blackboard_login_customization_guide.md` | Full guide covering safe customization areas, accessibility, responsive design, and maintenance. |
 
 ## How to Use

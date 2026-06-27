@@ -1,3 +1,13 @@
+/* ── BRAND VARIABLES ─────────────────────────────────────────────────────────
+   Set your institution's brand color here. All components below reference
+   these variables, so a single change updates the entire stylesheet. */
+:root {
+    --bb-brand-color:       #c56fd5; /* Anthology purple — replace with your color */
+    --bb-brand-color-dark:  #a94fbf; /* Hover/focus shade — ~15% darker */
+}
+
+/* ── THIRD-PARTY LOGIN TOGGLE (login_toggle.js) ─────────────────────────── */
+
 /* Container for toggle switch */
 .login-toggle-container {
     margin-bottom: 1em;
@@ -9,15 +19,16 @@
     font-weight: bold;
 }
 
-/* Checkbox styling (optional) */
+/* Checkbox styling */
 .login-toggle-checkbox {
     transform: scale(1.2);
     cursor: pointer;
 }
 
-/* Third-party login button styles */
+/* ── THIRD-PARTY LOGIN BUTTONS (custom_login_buttons.js) ────────────────── */
+
 .third-party-login-button {
-    background-color: #c56fd5; /* Anthology purple */
+    background-color: var(--bb-brand-color);
     color: #fff;
     border-radius: 6px;
     padding: 10px 16px;
@@ -31,13 +42,83 @@
 }
 
 .third-party-login-button:hover {
-    background-color: #a94fbf;
+    background-color: var(--bb-brand-color-dark);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     color: #fff;
     text-decoration: none;
 }
 
 .third-party-login-button:focus {
-    outline: 3px solid #a94fbf;
+    outline: 3px solid var(--bb-brand-color-dark);
+    outline-offset: 2px;
+}
+
+/* ── MAINTENANCE BANNER (maintenance_banner.js) ──────────────────────────── */
+
+.maintenance-banner {
+    background-color: #b85c00;
+    color: #fff;
+    border-radius: 6px;
+    padding: 12px 16px;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    text-align: left;
+}
+
+.maintenance-banner-message {
+    flex: 1;
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.maintenance-banner-dismiss {
+    background: none;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: 4px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 12px;
+    padding: 4px 10px;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.maintenance-banner-dismiss:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+.maintenance-banner-dismiss:focus {
+    outline: 2px solid #fff;
+    outline-offset: 2px;
+}
+
+/* ── PASSWORD VISIBILITY TOGGLE (examples/password_toggle.html) ─────────── */
+
+/* Wraps the password <input> so the toggle button can be absolutely positioned */
+.password-wrapper {
+    position: relative;
+    display: block;
+}
+
+/* Toggle button sits flush with the right edge of the input */
+#togglePassword {
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    font-size: 1.25rem;
+    line-height: 1;
+    padding: 0 8px;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+}
+
+#togglePassword:focus {
+    outline: 2px solid #fff;
     outline-offset: 2px;
 }

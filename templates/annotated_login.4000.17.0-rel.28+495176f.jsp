@@ -79,13 +79,18 @@
       Blackboard uses Prototype.js — use FastInit.addOnLoad()
       or standard DOMContentLoaded for DOM-dependent code.
 
-      LOAD ORDER MATTERS if using both custom JS files:
-        1. custom_login_buttons.js  (populates #3rdPartyLinks)
-        2. login_toggle.js          (depends on #3rdPartyLinks being populated)
+      LOAD ORDER MATTERS — scripts must appear in this sequence:
+        1. custom_login_buttons.js  (clones provider links into #3rdPartyLinks)
+        2. login_toggle.js          (adds checkbox to show/hide #3rdPartyLinks — depends on step 1)
+        3. login_form_toggle.js     (adds button to show/hide #loginFormFields — standalone)
+        4. maintenance_banner.js    (date-bounded status banner — standalone)
+        5. password_toggle.html     (eye icon on password field — standalone)
 
       Example — load from bbcswebdav:
       <script src="https://your-institution.blackboard.com/bbcswebdav/internal/branding/custom_login_buttons.js"></script>
       <script src="https://your-institution.blackboard.com/bbcswebdav/internal/branding/login_toggle.js"></script>
+      <script src="https://your-institution.blackboard.com/bbcswebdav/internal/branding/login_form_toggle.js"></script>
+      <script src="https://your-institution.blackboard.com/bbcswebdav/internal/branding/maintenance_banner.js"></script>
     --%>
   </bbNG:jsBlock>
 
