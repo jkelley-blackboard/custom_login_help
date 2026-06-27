@@ -17,8 +17,8 @@ document.addEventListener("DOMContentLoaded", function () {
   // Select the destination container where the new links will be appended
   const destContainer = document.getElementById("3rdPartyLinks");
 
-  // If either the provider list or destination container is missing, log a warning and exit
-  if (!providerList || !destContainer) {
+  // If either the provider list is empty or destination container is missing, log a warning and exit
+  if (providerList.length === 0 || !destContainer) {
     console.warn("Required elements not found: #loginRedirectProviderList or #3rdPartyLinks");
     return;
   }

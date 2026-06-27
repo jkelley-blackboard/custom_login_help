@@ -27,4 +27,17 @@
     font-weight: bold;
     font-size: 14px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.third-party-login-button:hover {
+    background-color: #a94fbf;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    color: #fff;
+    text-decoration: none;
+}
+
+.third-party-login-button:focus {
+    outline: 3px solid #a94fbf;
+    outline-offset: 2px;
 }

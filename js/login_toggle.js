@@ -11,13 +11,20 @@ document.addEventListener("DOMContentLoaded", function () {
     const toggleLabel = document.createElement("label");
     toggleLabel.textContent = "Show third-party login options";
     toggleLabel.className = "login-toggle-label";
+    toggleLabel.setAttribute("for", "loginToggle");
 
     const toggleInput = document.createElement("input");
     toggleInput.type = "checkbox";
+    toggleInput.id = "loginToggle";
     toggleInput.className = "login-toggle-checkbox";
+    toggleInput.setAttribute("aria-expanded", "false");
+    toggleInput.setAttribute("aria-controls", "3rdPartyLinks");
 
     toggleInput.addEventListener("change", function () {
-        thirdPartyLinks.style.display = this.checked ? "block" : "none";
+        const isExpanded = this.checked;
+        thirdPartyLinks.style.display = isExpanded ? "block" : "none";
+        thirdPartyLinks.setAttribute("aria-hidden", String(!isExpanded));
+        this.setAttribute("aria-expanded", String(isExpanded));
     });
 
     toggleContainer.appendChild(toggleLabel);
@@ -25,10 +32,11 @@ document.addEventListener("DOMContentLoaded", function () {
     providerList.parentNode.insertBefore(toggleContainer, providerList);
 
     thirdPartyLinks.style.display = "none";
+    thirdPartyLinks.setAttribute("aria-hidden", "true");
 
-    // Apply class to each button for styling
+    // Apply class to each button for styling; use the button's own text for the aria-label
     thirdPartyLinks.querySelectorAll("a").forEach((btn) => {
         btn.classList.add("third-party-login-button");
-        btn.setAttribute("aria-label", "Third-party login option");
+        btn.setAttribute("aria-label", "Login via " + (btn.textContent.trim() || "third-party provider"));
     });
 });

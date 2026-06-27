@@ -139,7 +139,29 @@ The login page includes:
 
 ## Example: Safe Branding Update
 
+Add your institution logo and brand color using an external CSS file. Place the CSS file in `bbcswebdav/internal/branding/` and reference it in the JSP using `bbNG:cssFile`:
 
+```jsp
+<bbNG:cssFile href="https://your-institution.blackboard.com/bbcswebdav/internal/branding/custom_login.css"/>
+```
+
+In the CSS file, target the existing login container elements:
+
+```css
+/* Replace the default logo with your institution's logo */
+.login-logo {
+    background-image: url('/bbcswebdav/internal/branding/logo.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+/* Apply institution brand color to headings */
+#login-block h1 {
+    color: #003366;
+}
+```
+
+**What to avoid**: Do not use inline `style=""` attributes on existing elements — they are harder to maintain and may be overwritten by platform updates. Always use a dedicated CSS file.
 
 ***
 
