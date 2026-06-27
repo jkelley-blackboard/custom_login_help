@@ -21,7 +21,7 @@ Blackboard SaaS allows administrators to customize the login page by editing a J
     *   Click **Download Template** to get the `login_ultra.jsp` file.
 
 2.  **Edit the Template**
-    *   Open `login.jsp` in a text editor (e.g., VS Code).
+    *   Open `login_ultra.jsp` in a text editor (e.g., VS Code).
     *   Apply safe customizations as described in this guide.
     *   Avoid removing Blackboard-specific tags or dynamic placeholders like `${mfaSecretKey}`.
 
