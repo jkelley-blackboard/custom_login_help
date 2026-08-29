@@ -1,25 +1,32 @@
 <%-- ============================================================
-  annotated_login.4000.17.0-rel.28+495176f.jsp
+  annotated_login_4001.0.0-rel.37+5ebeb21.jsp
   Clean-annotated copy of the Blackboard login-ultra.jsp from
-  release 4000.17.0-rel.28+495176f.
+  release 4001.0.0-rel.37+5ebeb21.
   Original markup by Santiago Vanegas (Blackboard).
   Annotations updated by Jeff Kelley.
 
-  See templates/login-ultra_4000.17.0-rel.28+495176f.jsp for
-  the unmodified original.
+  See templates/login-ultra_4001.0.0-rel.37+5ebeb21.jsp for
+  the default unedited version.
   ============================================================ --%>
 
 <%-- ── SERVLET / TAGLIB IMPORTS ────────────────────────────────
   Do not remove or reorder these. They pull in JSP includes,
   tag libraries, and server-side helpers that Blackboard requires.
   Check for changes after each SaaS release.
+
+  Changed in this release: the JSTL taglib URIs migrated from the
+  old http://java.sun.com/jsp/jstl/* namespace to jakarta.tags.* —
+  the first structural change found in this template across every
+  version tracked in this repo (see templates/README.md's Version
+  history). If your own customizations declare additional JSTL
+  taglibs, use the jakarta.tags.* URIs to match.
 --%>
 <%@ include file="/webapis/ui/doctype.jspf" %>
 <%@ page import="blackboard.servlet.util.CourseCatalogUtil" %>
 <%@ taglib uri="/bbNG" prefix="bbNG" %>
 <%@ taglib uri="/loginUI" prefix="loginUI" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="jakarta.tags.core" prefix="c" %>
+<%@ taglib uri="jakarta.tags.fmt" prefix="fmt"%>
 
 <c:set var="productName" value="${ loginUI:getProductName() }" />
 
@@ -80,13 +87,15 @@
       or standard DOMContentLoaded for DOM-dependent code.
 
       LOAD ORDER MATTERS — scripts must appear in this sequence:
-        1. custom_login_buttons.js  (clones provider links into #3rdPartyLinks)
-        2. login_toggle.js          (adds checkbox to show/hide #3rdPartyLinks — depends on step 1)
-        3. login_form_toggle.js     (adds button to show/hide #loginFormFields — standalone)
-        4. maintenance_banner.js    (date-bounded status banner — standalone)
-        5. password_toggle.html     (eye icon on password field — standalone)
+        1. login_config.js          (shared settings — must load before every snippet below)
+        2. custom_login_buttons.js  (clones provider links into #3rdPartyLinks)
+        3. login_toggle.js          (adds checkbox to show/hide #3rdPartyLinks — depends on step 2)
+        4. login_form_toggle.js     (adds button to show/hide #loginFormFields — standalone)
+        5. maintenance_banner.js    (date-bounded status banner — standalone)
+        6. password_toggle.html     (eye icon on password field — standalone)
 
       Example — load from bbcswebdav:
+      <script src="https://your-institution.blackboard.com/bbcswebdav/internal/branding/login_config.js"></script>
       <script src="https://your-institution.blackboard.com/bbcswebdav/internal/branding/custom_login_buttons.js"></script>
       <script src="https://your-institution.blackboard.com/bbcswebdav/internal/branding/login_toggle.js"></script>
       <script src="https://your-institution.blackboard.com/bbcswebdav/internal/branding/login_form_toggle.js"></script>
@@ -168,7 +177,7 @@
                              (the username/password inputs).
 
         The toggle button uses buttonToggle(), defined in the
-        examples/mods_to_login-utra-jsp.txt legacy snippet, or you
+        reference/mods_to_login-utra-jsp.txt legacy snippet, or you
         can use login_toggle.js for the checkbox-based version.
       --%>
       <!-- Custom: third-party provider buttons -->

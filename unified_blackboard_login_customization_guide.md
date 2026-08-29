@@ -1,42 +1,37 @@
-# Blackboard Login Page Customization Guide
+# Blackboard LMS Login Page Customization Guide
 
 ## Purpose
 
-This guide helps institutions safely customize the Blackboard login page using the existing JSP template and resulting HTML. It emphasizes:
+This guide is for Blackboard LMS administrators customizing the Ultra login page — adding branding, small usability improvements, or notices — without breaking authentication or losing the work on the next SaaS update. It assumes you already have the raw material: the JSP template (`templates/`) and the snippets that go into it (`js/`, `css/`, `examples/`). What follows explains how those pieces fit together, which parts of the template are actually safe to touch, and what to watch for.
+
+The sections below move from general to specific: how the page is put together, what System Admin settings affect it before you've touched anything, how the snippets share configuration, then the practical rules for customizing — what's safe, what to avoid, a worked example — and finally maintenance guidance.
+
+Throughout, it emphasizes:
 
 *   Responsive design
 *   Accessibility
-*   Maintainability across Blackboard updates
+*   Maintainability across Blackboard LMS updates
 
 ***
 
 ## Download & Upload the Login Page Template JSP
 
-Blackboard SaaS allows administrators to customize the login page by editing a JSP template. Follow these steps:
+For the official download/upload/reset steps and current System Admin navigation, see the canonical reference:
+
+📌 **[Anthology Help – Customize the Login Page](https://help.anthology.com/blackboard/administrator/en/configure-blackboard/customize-the-login-page.html)**
+
+This guide only covers what that page doesn't: which parts of the resulting JSP are safe to touch, the snippets in this repo, and how they fit into the template. Two things worth calling out before you start:
 
 > ⚠️ **Use the correct Branding location.** Navigate to the **"The Ultra experience is here!"** module on the System Admin page and click the **Branding** link there. The **Customize Login Page** link found in the **Communities** module is a legacy path and should be ignored — changes made there may not apply correctly.
 
-1.  **Download the Current Template**
-    *   Navigate to **System Admin > "The Ultra experience is here!" module > Branding > Customize Login Page**.
-    *   Click **Download Template** to get the `login_ultra.jsp` file.
-
-2.  **Edit the Template**
-    *   Open `login_ultra.jsp` in a text editor (e.g., VS Code).
-    *   Apply safe customizations as described in this guide.
-    *   Avoid removing Blackboard-specific tags or dynamic placeholders like `${mfaSecretKey}`.
-
-3.  **Upload the Modified Template**
-    *   Return to **System Admin > "The Ultra experience is here!" module > Branding > Customize Login Page**.
-    *   Click **Upload Template** and select your edited `login_ultra.jsp`.
-    *   Save and preview changes in a staging environment before going live.
-
-📌 **Reference**: [Blackboard Help – Customize the Login Page](https://help.blackboard.com/Learn/Administrator/SaaS/Institution_Branding/Customize_the_Login_Page)
+*   Avoid removing Blackboard-specific tags or dynamic placeholders like `${mfaSecretKey}`.
+*   Always preview in a staging environment before uploading to production.
 
 ***
 
 ## Page Structure Overview
 
-The diagram below shows the visual layout of the login page with all repository snippets applied. Elements marked `[P]` are rendered by Blackboard and should not be modified. Elements marked `[C]` are injected by snippets in this repository.
+The diagram below shows the visual layout of the login page with all repository snippets applied. Elements marked `[P]` are rendered by Blackboard LMS and should not be modified. Elements marked `[C]` are injected by snippets in this repository.
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
@@ -46,7 +41,7 @@ The diagram below shows the visual layout of the login page with all repository 
 │                                                                  │
 │  ╔═══════════════════════════════════════════════════════════╗   │
 │  ║  ⚠  Maintenance Banner            .maintenance-banner    ║   │
-│  ║     (only shown between START_DATE and END_DATE)     [C] ║   │
+│  ║     (only shown during the configured window)         [C] ║   │
 │  ╚═══════════════════════════════════════════════════════════╝   │
 │                                                                  │
 │                   ┌───────────────────┐                         │
@@ -82,12 +77,41 @@ The diagram below shows the visual layout of the login page with all repository 
 │                           #copyright  /  #loginOptions      [P] │
 └─────────────────────────────────────────────────────────────────┘
 
-[P]  Platform element — rendered by Blackboard. Do not modify.
+[P]  Platform element — rendered by Blackboard LMS. Do not modify.
 [C]  Custom element — added by snippets in this repository.
 👁   password_toggle.html snippet.
 ░░░  Hidden — element exists in the DOM but is not visible.
 ╔╗   Conditional — only renders when configured / within date range.
 ```
+
+***
+
+## Admin Configuration Effects on the Login Page
+
+Not every difference you'll see on the login page comes from the JSP, CSS, or JS — a number of settings live elsewhere in System Admin (Gateway settings, the Brand page, Authentication provider config, Cookie Disclosure, and more) and change what platform (`[P]`) elements exist or how they render, before any snippet in this repo runs.
+
+📄 **[reference/admin_config_effects.md](reference/admin_config_effects.md)** — full breakdown, kept separate from this guide since it's reference material that grows independently as new settings get confirmed, not part of the walkthrough below.
+
+***
+
+## Shared Configuration
+
+Every snippet in `js/` reads its settings from a single file, `js/login_config.js` — the banner message and date window, and the default open/closed state of the two toggles. Edit that one file instead of hunting through each snippet, and load it first so the other scripts pick up your values:
+
+```js
+window.BBLoginConfig = {
+  hiddenProviderPrefix: ":",
+  thirdPartyLinksVisibleByDefault: false,
+  directLoginVisibleByDefault: false,
+  maintenanceBanner: {
+    message: "...",
+    start: "2026-06-28T00:00:00",
+    end: "2026-06-29T02:00:00",
+  },
+};
+```
+
+Each snippet still falls back to a sensible default if `login_config.js` isn't loaded, so any one file can be dropped in on its own.
 
 ***
 
@@ -173,13 +197,18 @@ The diagram below shows the visual layout of the login page with all repository 
 
 ## Areas to Avoid Changing
 
-| Element                                    | Why to Avoid                            |
-| ------------------------------------------ | --------------------------------------- |
-| `<form>` structure                         | Tied to Blackboard authentication logic |
-| `id="user_id"` / `id="password"`           | Used by scripts and backend validation  |
-| MFA placeholders (`${mfaSecretKey}`)       | Dynamically populated by server         |
-| JSP includes (`<%@ include file="..." %>`) | Inject shared functionality             |
-| JavaScript functions like `loadLocale()`   | Required for language switching         |
+A nuance that trips up a lot of first-time admins and designers: most of the tags in this JSP (`<loginUI:loginForm />`, `<loginUI:localePicker />`, and similar) are opaque server-side components. The JSP source you're editing is **not** the HTML the browser receives — tags like these render into HTML you never see in this file. You can't "reach inside" `<loginUI:loginForm />` in the JSP to add a class or tweak an id; the actual `<form>`, `id="user_id"`, `id="password"`, etc. don't exist anywhere in this template's text. That's not a restriction you're choosing to respect — it's that there's nothing here to edit. The only way to affect what those tags produce is with CSS/JS after the page renders, exactly the pattern this repo's own snippets already use (`DOMContentLoaded` + `querySelector`, never a JSP edit).
+
+Some other items in the table below genuinely are visible, literal text in the JSP — you technically could delete them — but shouldn't, for other reasons (they're required includes, or a legal requirement).
+
+| Element | In the JSP source? | How to safely influence it |
+| --- | --- | --- |
+| `<form>` structure | No — rendered by `<loginUI:loginForm />` | CSS/JS only, after render. Not editable here. |
+| `id="user_id"` / `id="password"` | No — rendered by `<loginUI:loginForm />` | CSS/JS only — e.g. `examples/password_toggle.html` targets `#password` this way. |
+| MFA placeholders (`${mfaSecretKey}`) | No — rendered by `<loginUI:loginForm />` only when MFA is active | Out of scope for this repo's snippets — see `reference/admin_config_effects.md`. |
+| `loadLocale()` function | No — rendered by `<loginUI:localePicker />`'s own output | Don't touch; required for language switching. |
+| JSP includes (`<%@ include file="..." %>`) | Yes — literal in the JSP | Leave as-is; these pull in required platform functionality. |
+| `<bbNG:copyright />` | Yes — literal in the JSP | Leave as-is; required by this repo's LICENSE terms and Blackboard's own, whenever this template is reproduced or redistributed. |
 
 ***
 
@@ -225,7 +254,7 @@ In the CSS file, target the existing login container elements:
 | Task                    | Recommendation                                               |
 | ----------------------- | ------------------------------------------------------------ |
 | User Acceptance Testing | Test with multiple roles and devices                         |
-| Version Updates         | Revalidate customizations after each Blackboard SaaS release |
+| Version Updates         | Revalidate customizations after each Blackboard LMS SaaS release |
 | Backup Strategy         | Keep a versioned copy of your custom JSP and CSS files       |
 | Documentation           | Maintain a change log and annotated markup                   |
 

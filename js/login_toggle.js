@@ -1,4 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
+    const config = window.BBLoginConfig || {};
+    const visibleByDefault = config.thirdPartyLinksVisibleByDefault || false;
+
     const providerList = document.querySelector("#loginRedirectProviderList");
     const thirdPartyLinks = document.querySelector("#3rdPartyLinks");
 
@@ -17,7 +20,8 @@ document.addEventListener("DOMContentLoaded", function () {
     toggleInput.type = "checkbox";
     toggleInput.id = "loginToggle";
     toggleInput.className = "login-toggle-checkbox";
-    toggleInput.setAttribute("aria-expanded", "false");
+    toggleInput.checked = visibleByDefault;
+    toggleInput.setAttribute("aria-expanded", String(visibleByDefault));
     toggleInput.setAttribute("aria-controls", "3rdPartyLinks");
 
     toggleInput.addEventListener("change", function () {
@@ -31,8 +35,8 @@ document.addEventListener("DOMContentLoaded", function () {
     toggleContainer.appendChild(toggleInput);
     providerList.parentNode.insertBefore(toggleContainer, providerList);
 
-    thirdPartyLinks.style.display = "none";
-    thirdPartyLinks.setAttribute("aria-hidden", "true");
+    thirdPartyLinks.style.display = visibleByDefault ? "block" : "none";
+    thirdPartyLinks.setAttribute("aria-hidden", String(!visibleByDefault));
 
     // Apply class to each button for styling; use the button's own text for the aria-label
     thirdPartyLinks.querySelectorAll("a").forEach((btn) => {

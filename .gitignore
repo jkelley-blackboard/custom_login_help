@@ -1,0 +1,8 @@
+dist/
+.claude/settings.local.json
+
+# customize-login skill is still in development — untrack until ready to ship
+.claude/skills/customize-login/
+
+# scratch space for institution-specific or one-off work — never shared
+local/

@@ -2,8 +2,8 @@
    Set your institution's brand color here. All components below reference
    these variables, so a single change updates the entire stylesheet. */
 :root {
-    --bb-brand-color:       #c56fd5; /* Anthology purple — replace with your color */
-    --bb-brand-color-dark:  #a94fbf; /* Hover/focus shade — ~15% darker */
+    --bb-brand-color:       #1d5245; /* Blackboard Green — swap for your institution's color */
+    --bb-brand-color-dark:  #19463b; /* Hover/focus shade — ~15% darker */
 }
 
 /* ── THIRD-PARTY LOGIN TOGGLE (login_toggle.js) ─────────────────────────── */

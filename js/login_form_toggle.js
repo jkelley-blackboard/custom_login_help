@@ -2,10 +2,13 @@
    Intended for institutions where SSO is the primary login method — the direct login form
    starts hidden and is revealed on demand.
 
-   Depends on: nothing (standalone)
+   Depends on: nothing (standalone). Reads window.BBLoginConfig if present.
    Place in JSP: after custom_login_buttons.js (load order doesn't affect this file) */
 
 document.addEventListener("DOMContentLoaded", function () {
+    const config = window.BBLoginConfig || {};
+    const visibleByDefault = config.directLoginVisibleByDefault || false;
+
     const loginFormFields = document.getElementById("loginFormFields");
     if (!loginFormFields) return;
 
@@ -13,8 +16,10 @@ document.addEventListener("DOMContentLoaded", function () {
     toggleBtn.type = "button";
     toggleBtn.id = "toggleLoginFormBtn";
     toggleBtn.className = "button expand inverse outline";
-    toggleBtn.textContent = "Sign In with Username and Password";
-    toggleBtn.setAttribute("aria-expanded", "false");
+    toggleBtn.textContent = visibleByDefault
+        ? "Hide Username and Password Sign In"
+        : "Sign In with Username and Password";
+    toggleBtn.setAttribute("aria-expanded", String(visibleByDefault));
     toggleBtn.setAttribute("aria-controls", "loginFormFields");
 
     toggleBtn.addEventListener("click", function () {
@@ -29,6 +34,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     loginFormFields.parentNode.insertBefore(toggleBtn, loginFormFields);
 
-    loginFormFields.style.display = "none";
-    loginFormFields.setAttribute("aria-hidden", "true");
+    loginFormFields.style.display = visibleByDefault ? "block" : "none";
+    loginFormFields.setAttribute("aria-hidden", String(!visibleByDefault));
 });
