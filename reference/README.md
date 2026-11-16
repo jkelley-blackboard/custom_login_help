@@ -20,6 +20,7 @@ This folder also holds two related but separate references:
 
 - `admin_config_effects.md` — System Admin settings (Gateway, Brand page, Authentication, Cookie Disclosure, etc.) that change what renders on the login page, independent of the captures below.
 - `mods_to_login-utra-jsp.txt` — a legacy, superseded snippet (the original older-style `buttonToggle()` pattern, predating `js/login_toggle.js` and `js/login_form_toggle.js`), kept for historical reference rather than as a capture.
+- `jstl_taglib_migration.md` — investigation into the JSTL taglib URI change (`java.sun.com/jsp/jstl/*` → `jakarta.tags.*`) found between the 4000.21.0 and 4001.0.0 raw templates, including confirmed compatibility testing.
 
 ### Naming convention
 

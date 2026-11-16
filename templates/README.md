@@ -12,7 +12,9 @@ These files are Blackboard's own code, reproduced here under the retain-copyrigh
 |------|---------|-------|
 | `login-ultra_4000.17.0-rel.28+495176f.jsp` | 4000.17.0 | Default unmodified template |
 | `login-ultra_4000.21.0-rel.28+435d029.jsp` | 4000.21.0 | Default unmodified template |
-| `login-ultra_4001.0.0-rel.37+5ebeb21.jsp` | 4001.0.0 | Default unmodified template (latest) |
+| `login-ultra_4001.0.0-rel.37+5ebeb21.jsp` | 4001.0.0 | Default unmodified template |
+| `login-ultra_4001.4.0-rel.63+61a06ea.jsp` | 4001.4.0 | Default unmodified template; identical to 4001.0.0 |
+| `login-ultra_4001.7.0-rel.4+a1cda0a.jsp` | 4001.7.0 | Default unmodified template (latest); identical to 4001.0.0 |
 | `annotated_login_4000.17.0-rel.28+495176f.jsp` | 4000.17.0 | Annotated with section explanations + custom injection points |
 | `annotated_login_4001.0.0-rel.37+5ebeb21.jsp` | 4001.0.0 | Annotated with section explanations + custom injection points + jakarta.tags.* taglib note (latest) |
 
@@ -30,6 +32,8 @@ Releases more than 6 months old move to `archive/` — see
 | 4000.1.0 → 4000.17.0 | No changes — byte-identical |
 | 4000.17.0 → 4000.21.0 | No changes — byte-identical |
 | 4000.21.0 → 4001.0.0 | **Changed.** Both JSTL taglib declarations migrated from the old `http://java.sun.com/jsp/jstl/*` URIs to `jakarta.tags.*`: `<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>` → `<%@ taglib uri="jakarta.tags.core" prefix="c" %>`, same for `fmt`. Nothing else differs. Consistent with a Jakarta EE migration on Blackboard's end — if your customized JSP declares any JSTL taglibs of its own using the old `java.sun.com` URIs, update them to `jakarta.tags.*` to match. **Confirmed the other direction too**: using `jakarta.tags.*` on a pre-4001.0.0 tenant (tested on a 4000.21.0 instance) fails outright — `Unable to get JAR resource [.../jakarta.tags.core] containing TLD: [java.io.FileNotFoundException]`. The JAR that namespace resolves to doesn't exist yet on those releases; there's no forward compatibility. Match the taglib URI to the tenant's actual SaaS version, not to whichever annotated template you started from. |
+| 4001.0.0 → 4001.4.0 | No changes: byte-identical. The 4001.0.0 annotated template still applies. |
+| 4001.4.0 → 4001.7.0 | No changes: byte-identical (4001.7.0 downloaded from a tenant on the Test/Stage release, ahead of production on 2026-12-03). |
 
 The raw `login-ultra.jsp` was byte-identical across every version from
 3902.1.0 through 4000.21.0 — 4001.0.0 is the first change found in this
@@ -70,6 +74,8 @@ releases someone has actually diffed and recorded.
 
 | Date | Version | Note |
 |------|---------|------|
+| 2026-11-16 | 4001.7.0 | Added raw template (rel.4+a1cda0a); identical to 4001.0.0, no annotated update needed |
+| 2026-11-16 | 4001.4.0 | Added raw template (rel.63+61a06ea); identical to 4001.0.0, no annotated update needed |
 | 2026-08-29 | — | Created `archive/` for releases >6 months old; moved 3902.1.0, 4000.1.0, 4000.6.0 there |
 | 2026-08-29 | 4001.0.0 | Added raw + annotated template; first real diff found — JSTL taglib URIs migrated to `jakarta.tags.*` |
 | 2026-08-29 | 4000.21.0 | Added raw template; identical to 4000.17.0, no annotated update needed |
