@@ -12,7 +12,7 @@ The snippets below are what you actually add to your login page. Each is a self-
 |---------|------|--------------|
 | Shared config | `js/login_config.js` | Brand/behavior settings (banner message and dates, default toggle states) read by every snippet below. Load this first. |
 | Third-party login buttons | `js/custom_login_buttons.js` | Clones SSO/SAML provider links from the platform dropdown into a visible, styled button area (`#3rdPartyLinks`) |
-| Third-party toggle | `js/login_toggle.js` | Adds a checkbox to show/hide the `#3rdPartyLinks` button area |
+| Third-party toggle | `js/login_toggle.js` | Adds a button to show/hide the `#3rdPartyLinks` button area |
 | Direct login toggle | `js/login_form_toggle.js` | Adds a button to show/hide the username/password fields — useful when SSO is the primary login method |
 | Maintenance banner | `js/maintenance_banner.js` | Shows a date-bounded, dismissible notice above the login form |
 | Password visibility toggle | `examples/password_toggle.html` | Adds a show/hide eye button to the password field |
@@ -22,9 +22,10 @@ See `unified_blackboard_login_customization_guide.md` for full setup instruction
 
 ## Guided setup
 
-If you're working in Claude Code, run `/customize-login` to be walked through
-picking features, filling in `js/login_config.js` and your brand color, and
-assembling a ready-to-upload `login_ultra.jsp` for your institution.
+*In development, not yet published in this repo.* A `/customize-login` Claude Code
+command will walk you through picking features, filling in `js/login_config.js`
+and your brand color, and assembling a ready-to-upload `login_ultra.jsp` for your
+institution. Until it ships, follow the guide and the annotated template.
 
 ## Repository structure
 
@@ -32,7 +33,7 @@ assembling a ready-to-upload `login_ultra.jsp` for your institution.
 js/
   login_config.js             Shared settings read by every snippet below — load first
   custom_login_buttons.js     Clone provider links into #3rdPartyLinks
-  login_toggle.js             Checkbox toggle for #3rdPartyLinks
+  login_toggle.js             Button toggle for #3rdPartyLinks
   login_form_toggle.js        Button toggle for #loginFormFields
   maintenance_banner.js       Date-bounded status banner
 css/
@@ -50,7 +51,6 @@ reference/
   dom/                          Rendered-DOM captures, by version/date
   admin_config_effects.md       System Admin settings that change what renders on the login page
   mods_to_login-utra-jsp.txt    Legacy reference (original older-style snippets)
-.claude/skills/customize-login/  /customize-login guided-setup skill (Claude Code)
 unified_blackboard_login_customization_guide.md   Full customization guide
 ```
 

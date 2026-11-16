@@ -54,7 +54,7 @@ The diagram below shows the visual layout of the login page with all repository 
 │  │                                   #3rdPartyLinks     [C] │   │
 │  └───────────────────────────────────────────────────────────┘   │
 │                                                                  │
-│  ☐  Show third-party login options        login_toggle.js   [C] │
+│  ▸  Show third-party sign-in options      login_toggle.js   [C] │
 │                                                                  │
 │  ┌───────────────────────────────────────────────────────────┐   │
 │  │  [ Sign In with Username and Password ]                   │   │
@@ -105,13 +105,17 @@ window.BBLoginConfig = {
   directLoginVisibleByDefault: false,
   maintenanceBanner: {
     message: "...",
-    start: "2026-06-28T00:00:00",
-    end: "2026-06-29T02:00:00",
+    start: "2026-12-05T22:00:00-05:00",
+    end: "2026-12-06T02:00:00-05:00",
   },
 };
 ```
 
-Each snippet still falls back to a sensible default if `login_config.js` isn't loaded, so any one file can be dropped in on its own.
+Give the banner's `start` and `end` a time zone offset (`-05:00` is US Eastern Standard Time), so every visitor sees the same window. Without an offset, each visitor's browser reads the time in its own time zone.
+
+Each snippet still falls back to a sensible default if `login_config.js` isn't loaded, so any one file can be dropped in on its own. The exception is the maintenance banner: with no dates configured, it doesn't show.
+
+The injected controls use this repo's own classes and colors from `css/login_styles.css`, not Blackboard's `button inverse outline` classes, which draw white text that disappears on a light page. If your login page background isn't the default dark one, set `--bb-login-fg` (and check `--bb-brand-text` against your brand color).
 
 ***
 

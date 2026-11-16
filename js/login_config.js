@@ -8,7 +8,8 @@
 
 window.BBLoginConfig = {
   // custom_login_buttons.js: provider links whose visible text starts with
-  // this character are treated as admin-hidden and skipped.
+  // this character are treated as admin-hidden and skipped. Set to "" to
+  // show every provider.
   hiddenProviderPrefix: ":",
 
   // login_toggle.js: whether the #3rdPartyLinks button area starts visible.
@@ -19,12 +20,14 @@ window.BBLoginConfig = {
   directLoginVisibleByDefault: false,
 
   // maintenance_banner.js: date-bounded status banner. Update message,
-  // start, and end before each maintenance window. start/end are parsed
-  // with `new Date(...)` in the visitor's local time zone.
+  // start, and end before each maintenance window. Always include a time
+  // zone offset (here -05:00, US Eastern Standard Time) so every visitor
+  // sees the same window; without one, each visitor's own time zone is
+  // used. Remove start/end (or the whole block) to turn the banner off.
   maintenanceBanner: {
     message:
-      "Scheduled maintenance: Saturday, June 28 from 10:00 PM to 2:00 AM ET. The system will be unavailable during this window.",
-    start: "2026-06-28T00:00:00",
-    end: "2026-06-29T02:00:00",
+      "Scheduled maintenance: Saturday, December 5 from 10:00 PM to 2:00 AM ET. The system will be unavailable during this window.",
+    start: "2026-12-05T22:00:00-05:00",
+    end: "2026-12-06T02:00:00-05:00",
   },
 };

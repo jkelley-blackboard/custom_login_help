@@ -4,7 +4,7 @@ Most of this folder is what you'd expect: this repo's own stylesheets, meant to 
 
 | File | Load with | What it's for |
 |---|---|---|
-| `login_styles.css` | Every snippet in `js/` | Styles for the toggle checkboxes, third-party buttons, maintenance banner, and password toggle. Set `--bb-brand-color` here. |
+| `login_styles.css` | Every snippet in `js/` | Styles for the two toggles, third-party buttons, maintenance banner, and password toggle. Set `--bb-brand-color` (and `--bb-login-fg` if your page background isn't the default dark one) here. |
 
 ### `ultra_<version>.css`, `_login.scss`, `_global.scss` — not ours
 

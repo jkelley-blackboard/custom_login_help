@@ -3,13 +3,17 @@
    by naming its link in the GUI with that prefix), clones the rest as
    styled buttons, and appends them to #3rdPartyLinks.
 
+   The buttons get this repo's own .third-party-login-button class (brand
+   background, white text), not Blackboard's "button inverse outline"
+   classes, which draw white text and disappear on a light login page.
+
    Depends on: nothing (standalone). Reads window.BBLoginConfig if present.
+   Requires:   .third-party-login-button CSS from login_styles.css
    Place in JSP: before login_toggle.js */
 
-// Wait until the entire DOM is loaded before running the script
 document.addEventListener("DOMContentLoaded", function () {
     const config = window.BBLoginConfig || {};
-    const hiddenPrefix = config.hiddenProviderPrefix || ":";
+    const hiddenPrefix = config.hiddenProviderPrefix ?? ":";
 
     const providerList = document.querySelectorAll("ul#loginRedirectProviderList li");
     const destContainer = document.getElementById("3rdPartyLinks");
@@ -21,14 +25,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
     providerList.forEach((item, index) => {
         const link = item.firstElementChild;
-        if (!link || link.innerText.charAt(0) === hiddenPrefix) return;
+        if (!link) return;
+        const label = link.innerText.trim();
+        if (hiddenPrefix && label.startsWith(hiddenPrefix)) return;
 
         const newElement = document.createElement("a");
         newElement.id = `providerLink${index}`;
-        newElement.className = "button expand inverse outline provlink";
+        newElement.className = "third-party-login-button provlink";
         newElement.href = link.href;
-        newElement.innerText = link.innerText;
+        newElement.innerText = label;
+        newElement.setAttribute("aria-label", "Sign in with " + (label || "third-party provider"));
         destContainer.appendChild(newElement);
     });
 });
-

@@ -82,7 +82,7 @@
       LOAD ORDER MATTERS — scripts must appear in this sequence:
         1. login_config.js          (shared settings — must load before every snippet below)
         2. custom_login_buttons.js  (clones provider links into #3rdPartyLinks)
-        3. login_toggle.js          (adds checkbox to show/hide #3rdPartyLinks — depends on step 2)
+        3. login_toggle.js          (adds a button to show/hide #3rdPartyLinks; depends on step 2)
         4. login_form_toggle.js     (adds button to show/hide #loginFormFields — standalone)
         5. maintenance_banner.js    (date-bounded status banner — standalone)
         6. password_toggle.html     (eye icon on password field — standalone)
@@ -108,9 +108,9 @@
          custom_login_buttons.js clones the links into #3rdPartyLinks instead. */
       /* #loginRedirectProviders { display: none; } */
 
-      /* Hide the username/password fields on initial load —
-         login_toggle.js or the toggle button will reveal them. */
-      /* #loginFormFields { display: none; } */
+      /* Don't hide #loginFormFields here. login_form_toggle.js hides it
+         on load (directLoginVisibleByDefault in login_config.js) and a
+         CSS display:none would stop the toggle from revealing it. */
     </style>
   </bbNG:cssBlock>
 
@@ -169,9 +169,12 @@
         #toggle_login_form → a button that shows/hides #loginFormFields
                              (the username/password inputs).
 
-        The toggle button uses buttonToggle(), defined in the
-        reference/mods_to_login-utra-jsp.txt legacy snippet, or you
-        can use login_toggle.js for the checkbox-based version.
+        Prefer js/login_form_toggle.js for the direct-login toggle; it
+        inserts its own button, so #toggle_login_form below isn't needed.
+        The commented-out #toggle_login_form uses buttonToggle() from the
+        legacy reference/mods_to_login-utra-jsp.txt snippet. Its
+        "button inverse outline" classes draw white text, which
+        disappears on a light page background.
       --%>
       <!-- Custom: third-party provider buttons -->
       <div id="3rdPartyLinks"></div>
